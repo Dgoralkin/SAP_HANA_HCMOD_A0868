@@ -1,0 +1,19 @@
+{
+"HC::BOOKS": {},
+"HC::CACHED_TABLE": {},
+"HC::CCTR_COST": {},
+"HC::CCTR_HIE_TIME": {},
+"HC::CITIES": {},
+"HC::COUNTRIES": {},
+"HC::CUSTOMER": {},
+"HC::DOM_MEPRF": {},
+"HC::DOM_MEPRFT": {},
+"HC::EMPLOYEE": {},
+"HC::EMPLOYEE_HIERARCHY": {},
+"HC::EMPLOYEE_HIERARCHY2": {},
+"HC::HIERARCHY_SOURCE_DATA": {},
+"HC::ORDERS": {},
+"HC::PRODUCT": {},
+"HC::PRODUCT_GROUP": {},
+"HC::SALES_DATA": {}
+}

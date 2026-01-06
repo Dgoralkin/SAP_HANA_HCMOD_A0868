@@ -1,0 +1,10 @@
+FUNCTION "HC::SF_GET_BEST_CUSTOMER_00"( )
+       RETURNS best_cust nvarchar(10) 
+       LANGUAGE SQLSCRIPT 
+       SQL SECURITY INVOKER AS 
+BEGIN 
+   
+SELECT customer_id into best_cust from "HC::SALES_DATA"
+where quantity = (select max(quantity) from "HC::SALES_DATA");
+   
+END;

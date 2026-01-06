@@ -1,0 +1,104 @@
+{
+  "HC::BOOKS": {
+    "target": {
+      "object": "BOOKS",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::CACHED_TABLE": {
+    "target": {
+      "object": "CACHED_TABLE",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::CCTR_COST": {
+    "target": {
+      "object": "CCTR_COST",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::CCTR_HIE_TIME": {
+    "target": {
+      "object": "CCTR_HIE_TIME",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::CITIES": {
+    "target": {
+      "object": "CITIES",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::COUNTRIES": {
+    "target": {
+      "object": "COUNTRIES",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::CUSTOMER": {
+    "target": {
+      "object": "CUSTOMER",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::DOM_MEPRF": {
+    "target": {
+      "object": "DOM_MEPRF",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::DOM_MEPRFT": {
+    "target": {
+      "object": "DOM_MEPRFT",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::EMPLOYEE": {
+    "target": {
+      "object": "EMPLOYEE",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::EMPLOYEE_HIERARCHY": {
+    "target": {
+      "object": "EMPLOYEE_HIERARCHY",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::EMPLOYEE_HIERARCHY2": {
+    "target": {
+      "object": "EMPLOYEE_HIERARCHY2",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::HIERARCHY_SOURCE_DATA": {
+    "target": {
+      "object": "HIERARCHY_SOURCE_DATA",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::ORDERS": {
+    "target": {
+      "object": "ORDERS",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::PRODUCT": {
+    "target": {
+      "object": "PRODUCT",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::PRODUCT_GROUP": {
+    "target": {
+      "object": "PRODUCT_GROUP",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  },
+  "HC::SALES_DATA": {
+    "target": {
+      "object": "SALES_DATA",
+      "schema.configure": "GrantorService/schemaTR"
+    }
+  }
+}

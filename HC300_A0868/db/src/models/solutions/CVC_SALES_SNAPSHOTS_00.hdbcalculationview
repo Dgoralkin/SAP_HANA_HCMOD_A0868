@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVC_SALES_SNAPSHOTS_00" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="Sales Snapshots"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HC::CVC_SALES">
+    <resourceUri>HC::CVC_SALES</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures>
+  <query id="Q_2019_2020_Flatscreens" generatedSnapshotView="I_CVC_SALES_SNAPHOTS_00" createSnapshotAfterDeployment="true" doNotCleanUpBeforeDeployment="true" useDefinerMode="true">
+    <queryString>SELECT &quot;PRODUCT_ID&quot; , &quot;YEAR&quot; , &quot;CATEGORY&quot; , &quot;CURRENCY_CODE&quot; , SUM(&quot;GROSS_AMOUNT&quot;) AS &quot;GROSS_AMOUNT&quot; , SUM(&quot;NET_AMOUNT&quot;) AS &quot;NET_AMOUNT&quot; 
+FROM &quot;HC::CVC_SALES_SNAPSHOTS_00&quot; 
+WHERE &quot;YEAR&quot; in ('2019','2020') 
+AND &quot;CATEGORY&quot; = 'Flat screens'
+GROUP BY &quot;PRODUCT_ID&quot; , &quot;YEAR&quot; , &quot;CATEGORY&quot; , &quot;CURRENCY_CODE&quot;  </queryString>
+  </query>
+</snapshotProcedures>
+<calculationViews/>
+<logicalModel id="HC::CVC_SALES">
+  <attributes>
+    <attribute id="PRODUCT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <keyMapping columnObjectName="CVC_SALES" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="YEAR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEAR"/>
+      <keyMapping columnObjectName="CVC_SALES" columnName="YEAR"/>
+    </attribute>
+    <attribute id="CATEGORY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CATEGORY"/>
+      <keyMapping columnObjectName="CVC_SALES" columnName="CATEGORY"/>
+    </attribute>
+    <attribute id="CURRENCY_CODE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY_CODE"/>
+      <keyMapping columnObjectName="CVC_SALES" columnName="CURRENCY_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GROSS_AMOUNT" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GROSS_AMOUNT"/>
+      <measureMapping columnObjectName="CVC_SALES" columnName="GROSS_AMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NET_AMOUNT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <measureMapping columnObjectName="CVC_SALES" columnName="NET_AMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

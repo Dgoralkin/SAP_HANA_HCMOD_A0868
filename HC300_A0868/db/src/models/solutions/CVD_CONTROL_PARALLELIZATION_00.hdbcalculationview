@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVD_CONTROL_PARALLELIZATION_00" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" propagateInstantiation="true">
+<descriptions defaultDescription="CVD_CONTROL_PARALLELIZATION_00"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HC::Empl_Salary_Current" partitionedExecution="true">
+    <partitionAttributeName>Year</partitionAttributeName>
+    <resourceUri>HC::Empl_Salary_Current</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Start_Parallel">
+    <viewAttributes>
+      <viewAttribute id="Year"/>
+      <viewAttribute id="EmployeeID"/>
+      <viewAttribute id="TotalSalary"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HC::Empl_Salary_Current"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Processing_in_Parallel">
+    <viewAttributes>
+      <viewAttribute id="Year"/>
+      <viewAttribute id="EmployeeID"/>
+      <viewAttribute id="TotalSalary"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="MonthlySalary" datatype="DECIMAL" length="10" scale="2" expressionLanguage="SQL">
+        <formula>&quot;TotalSalary&quot; / 12</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Start_Parallel"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Stop_Parallel" partitionedExecution="true">
+    <viewAttributes>
+      <viewAttribute id="Year"/>
+      <viewAttribute id="EmployeeID"/>
+      <viewAttribute id="TotalSalary"/>
+      <viewAttribute id="MonthlySalary"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Processing_in_Parallel" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Year" source="Year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EmployeeID" source="EmployeeID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TotalSalary" source="TotalSalary"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MonthlySalary" source="MonthlySalary"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Stop_Parallel">
+  <attributes>
+    <attribute id="Year" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Year"/>
+      <keyMapping columnObjectName="Stop_Parallel" columnName="Year"/>
+    </attribute>
+    <attribute id="EmployeeID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EmployeeID"/>
+      <keyMapping columnObjectName="Stop_Parallel" columnName="EmployeeID"/>
+    </attribute>
+    <attribute id="TotalSalary" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TotalSalary"/>
+      <keyMapping columnObjectName="Stop_Parallel" columnName="TotalSalary"/>
+    </attribute>
+    <attribute id="MonthlySalary" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MonthlySalary"/>
+      <keyMapping columnObjectName="Stop_Parallel" columnName="MonthlySalary"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Start_Parallel" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="427"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Processing_in_Parallel" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Stop_Parallel" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

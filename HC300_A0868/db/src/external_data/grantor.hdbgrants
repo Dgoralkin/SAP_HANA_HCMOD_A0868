@@ -1,0 +1,18 @@
+{
+  "GrantorService":{
+    "object_owner":{
+      "global_roles":[  
+        {  
+          "roles_with_admin_option":["EXT_SCHEMA_ACCESS_OBJOWNER"]
+        }
+      ]
+    },
+    "application_user":{
+      "global_roles":[  
+        {  
+          "roles":["EXT_SCHEMA_ACCESS_APPUSER"]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVC_STATIC_CACHE_00_STAGE1" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CVC_STATIC_CACHE.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<executionHints name="query_level_sql_hints" value="RESULT_CACHE"/>
+<executionHints name="qo_pop_hints" value="RESULT_CACHE"/>
+<dataSources>
+  <DataSource id="HC::CACHED_TABLE">
+    <resourceUri>HC::CACHED_TABLE</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<staticResultCache cacheEnabled="true" retentionPeriod="60" force="false"/>
+<calculationViews/>
+<logicalModel id="HC::CACHED_TABLE">
+  <attributes>
+    <attribute id="COLUMN1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COLUMN1"/>
+      <keyMapping columnObjectName="CACHED_TABLE" columnName="COLUMN1"/>
+    </attribute>
+    <attribute id="COLUMN2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COLUMN2"/>
+      <keyMapping columnObjectName="CACHED_TABLE" columnName="COLUMN2"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="MEASURE" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MEASURE"/>
+      <measureMapping columnObjectName="CACHED_TABLE" columnName="MEASURE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

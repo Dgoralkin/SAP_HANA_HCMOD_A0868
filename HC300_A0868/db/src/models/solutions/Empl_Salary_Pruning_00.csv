@@ -1,0 +1,2 @@
+HC::CVC_EMPL_SALARY_PRUNING_00,HC::Empl_Salary_Current,Year,>=,2022,
+HC::CVC_EMPL_SALARY_PRUNING_00,HC::Empl_Salary_Historical,Year,<,2022,

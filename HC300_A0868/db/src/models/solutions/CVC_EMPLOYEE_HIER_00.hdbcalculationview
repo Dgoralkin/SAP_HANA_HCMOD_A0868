@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="HC::CVC_EMPLOYEE_HIER_00" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Employee Hierarchy"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HC::EMPLOYEE">
+    <resourceUri>HC::EMPLOYEE</resourceUri>
+  </DataSource>
+  <DataSource id="HC::EMPLOYEE_HIERARCHY2">
+    <resourceUri>HC::EMPLOYEE_HIERARCHY2</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="DNUMBER"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="REMAINDERDAYS" aggregationType="sum"/>
+      <viewAttribute id="PARENT_DNUMBER"/>
+      <viewAttribute hidden="true" id="JOIN$DNUMBER$CHILD_DNUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HC::EMPLOYEE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DNUMBER" source="DNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REMAINDERDAYS" source="REMAINDERDAYS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DNUMBER$CHILD_DNUMBER" source="DNUMBER"/>
+    </input>
+    <input node="HC::EMPLOYEE_HIERARCHY2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARENT_DNUMBER" source="PARENT_DNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DNUMBER$CHILD_DNUMBER" source="CHILD_DNUMBER"/>
+    </input>
+    <joinAttribute name="JOIN$DNUMBER$CHILD_DNUMBER"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="DNUMBER" order="1" descriptionColumnName="NAME" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DNUMBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="DNUMBER"/>
+    </attribute>
+    <attribute id="NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="NAME"/>
+    </attribute>
+    <attribute id="PARENT_DNUMBER" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARENT_DNUMBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARENT_DNUMBER"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="REMAINDERDAYS" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="REMAINDERDAYS"/>
+      <measureMapping columnObjectName="Join_1" columnName="REMAINDERDAYS"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions>
+    <localDimension id="EMPLOYEE_HIERARCHY">
+      <attributeRef xsi:type="DataFoundation:Attribute">DNUMBER</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">PARENT_DNUMBER</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:ParentChildHierarchy" id="EMPLOYEE_HIERARCHY" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" cacheEnabled="false" cycleHandling="BREAKUP" emptyValueIsNull="false" withRootNode="true">
+          <descriptions defaultDescription="Employee Parent-Child Hierarchy"/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <attributeParentPair attribute="DNUMBER" parentAttribute="PARENT_DNUMBER">
+            <rootNode>
+              <value>D100012</value>
+            </rootNode>
+          </attributeParentPair>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="211"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="HC::EMPLOYEE" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="181"/>
+    </shape>
+    <shape modelObjectName="HC::EMPLOYEE_HIERARCHY2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="234"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

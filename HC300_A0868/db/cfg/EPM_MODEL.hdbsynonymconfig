@@ -1,0 +1,61 @@
+{"HC::SNWD_AD": { 
+    "target": {
+      "object": "SNWD_AD",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_BP": { 
+    "target": {
+      "object": "SNWD_BP",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_BP_EM": { 
+    "target": {
+      "object": "SNWD_BP_EM",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_CONTACT": { 
+    "target": {
+      "object": "SNWD_CONTACT",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_EMPLOYEES": { 
+    "target": {
+      "object": "SNWD_EMPLOYEES",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_PD": { 
+    "target": {
+      "object": "SNWD_PD",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_PO": { 
+    "target": {
+      "object": "SNWD_PO",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_PO_I": { 
+    "target": {
+      "object": "SNWD_PO_I",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_SO": { 
+    "target": {
+      "object": "SNWD_SO",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  },
+"HC::SNWD_SO_I": { 
+    "target": {
+      "object": "SNWD_SO_I",
+      "schema.configure": "GrantorService/schemaEPM"
+    }
+  }
+}

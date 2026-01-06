@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="HC::CVD_EMPLOYEE_HIER" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="AUTO" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="Employee Hierarchy"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HC::EMPLOYEE_HIERARCHY">
+    <resourceUri>HC::EMPLOYEE_HIERARCHY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<inlineHierarchy xsi:type="Dimension:ParentChildHierarchy" id="H_EMP" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE_IF_DEFINED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="false">
+  <descriptions defaultDescription="Employee Hierarchy">
+    <comment text="Time columns are not used (because there is only one version of the hierarchy structure)"/>
+  </descriptions>
+  <unassignedMemberProperties mode="FALSE"/>
+  <attributeParentPair attribute="CHILD_DNUMBER" parentAttribute="PARENT_DNUMBER">
+    <rootNode/>
+  </attributeParentPair>
+</inlineHierarchy>
+<logicalModel id="HC::EMPLOYEE_HIERARCHY">
+  <attributes>
+    <attribute id="PARENT_DNUMBER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARENT_DNUMBER"/>
+      <keyMapping columnObjectName="EMPLOYEE_HIERARCHY" columnName="PARENT_DNUMBER"/>
+    </attribute>
+    <attribute id="CHILD_DNUMBER" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CHILD_DNUMBER"/>
+      <keyMapping columnObjectName="EMPLOYEE_HIERARCHY" columnName="CHILD_DNUMBER"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

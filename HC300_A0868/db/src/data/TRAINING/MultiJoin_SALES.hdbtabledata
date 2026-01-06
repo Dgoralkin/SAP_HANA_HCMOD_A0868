@@ -1,0 +1,19 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "HC::MJ_SALES",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "HC::MultiJoin_SALES.csv",
+                "has_header": true
+                           },
+            "import_settings": {
+                "import_columns": [
+                    "ORDER_ID","CUSTOMER","AMOUNT"
+                                  ],
+                "include_filter": []
+                               }
+        }
+               ]
+}

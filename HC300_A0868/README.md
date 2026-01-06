@@ -1,0 +1,1 @@
+Package for the SAP HANA Cloud Modeling Learning Journey (SAP HANA Cloud QRC 2.2023)
