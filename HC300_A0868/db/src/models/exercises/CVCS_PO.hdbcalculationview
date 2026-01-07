@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVCS_PO" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="Purchase Orders (U4_E10) Star Cube"/>
+<descriptions defaultDescription="CVCS_PO (U4_E10 - Star Cube)"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -24,16 +24,16 @@
       <viewAttribute id="GROSS_AMOUNT" aggregationType="sum"/>
       <viewAttribute id="TAX_AMOUNT" aggregationType="sum"/>
       <viewAttribute id="NET_AMOUNT" aggregationType="sum"/>
-      <viewAttribute hidden="true" id="JOIN$NODE_KEY$PARENT_KEY"/>
       <viewAttribute hidden="true" id="JOIN$CLIENT$CLIENT"/>
+      <viewAttribute hidden="true" id="JOIN$NODE_KEY$PARENT_KEY"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="HC::SNWD_PO">
       <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PO_ID" source="PO_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_GUID" source="PARTNER_GUID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$NODE_KEY$PARENT_KEY" source="NODE_KEY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLIENT$CLIENT" source="CLIENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$NODE_KEY$PARENT_KEY" source="NODE_KEY"/>
     </input>
     <input node="HC::SNWD_PO_I">
       <mapping xsi:type="Calculation:AttributeMapping" target="PO_ITEM_POS" source="PO_ITEM_POS"/>
@@ -42,11 +42,11 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TAX_AMOUNT" source="TAX_AMOUNT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$NODE_KEY$PARENT_KEY" source="PARENT_KEY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLIENT$CLIENT" source="CLIENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$NODE_KEY$PARENT_KEY" source="PARENT_KEY"/>
     </input>
-    <joinAttribute name="JOIN$NODE_KEY$PARENT_KEY"/>
     <joinAttribute name="JOIN$CLIENT$CLIENT"/>
+    <joinAttribute name="JOIN$NODE_KEY$PARENT_KEY"/>
   </calculationView>
 </calculationViews>
 <logicalModel id="Join_1">
@@ -107,7 +107,7 @@
         <attributeName>CLIENT</attributeName>
         <attributeName>NODE_KEY</attributeName>
       </associatedAttributeNames>
-      <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+      <properties cardinality="CN_1" joinType="referential" joinOperator="Equal"/>
       <associatedAttributeFeatures>
         <attributeReference alias="CLIENT_BP" attributeName="CLIENT" hidden="true"/>
         <attributeReference alias="NODE_KEY_BP" attributeName="NODE_KEY" hidden="true"/>
@@ -122,10 +122,10 @@
         <attributeName>CLIENT</attributeName>
         <attributeName>NODE_KEY</attributeName>
       </associatedAttributeNames>
-      <properties cardinality="CN_1" joinType="referential" joinOperator="Equal"/>
+      <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
       <associatedAttributeFeatures>
-        <attributeReference alias="CLIENT_PD" attributeName="CLIENT"/>
-        <attributeReference alias="NODE_KEY_PD" attributeName="NODE_KEY"/>
+        <attributeReference alias="CLIENT_PD" attributeName="CLIENT" hidden="true"/>
+        <attributeReference alias="NODE_KEY_PD" attributeName="NODE_KEY" hidden="true"/>
       </associatedAttributeFeatures>
     </logicalJoin>
   </sharedDimensions>
@@ -133,13 +133,11 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="92" y="112"/>
-    
-      <rectangleSize width="160"/>
+      <upperLeftCorner x="40" y="85"/>
     </shape>
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="92" y="247"/>
+      <upperLeftCorner x="100" y="230"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="HC::SNWD_PO" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
@@ -155,11 +153,11 @@
       <rectangleSize width="250"/>
     </shape>
     <shape modelObjectName="HC::CVD_BP_JOIN" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
-      <upperLeftCorner x="339" y="-63"/>
+      <upperLeftCorner x="320" y="-63"/>
       <rectangleSize width="219.4912109375"/>
     </shape>
     <shape modelObjectName="HC::CVD_PD" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
-      <upperLeftCorner x="339" y="235"/>
+      <upperLeftCorner x="320" y="164"/>
       <rectangleSize width="194.02685546875"/>
     </shape>
   </shapes>

@@ -1,75 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVC_MJ_SALES" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="Sales with MultiJoin"/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVC_MJ_SALES_MY" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="CVC_MJ_SALES_MY (U4_E9 - Three tables in one Join)"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
   <DataSource id="HC::MJ_CUSTOMERS">
     <resourceUri>HC::MJ_CUSTOMERS</resourceUri>
   </DataSource>
-  <DataSource id="HC::MJ_COUNTRIES">
-    <resourceUri>HC::MJ_COUNTRIES</resourceUri>
-  </DataSource>
   <DataSource id="HC::MJ_SALES">
     <resourceUri>HC::MJ_SALES</resourceUri>
+  </DataSource>
+  <DataSource id="HC::MJ_COUNTRIES">
+    <resourceUri>HC::MJ_COUNTRIES</resourceUri>
   </DataSource>
 </dataSources>
 <snapshotProcedures/>
 <calculationViews>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" cardinality="CN_1" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="HC::MJ_SALES" multiJoinOrder="Outside In">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" cardinality="C1_1" joinType="referential" multiJoinNode="Join_1" multiJoinCentralTable="HC::MJ_SALES" multiJoinOrder="Inside Out">
     <viewAttributes>
+      <viewAttribute id="ORDER_ID" aggregationType="sum"/>
+      <viewAttribute id="CUSTOMER"/>
+      <viewAttribute id="AMOUNT" aggregationType="sum"/>
       <viewAttribute id="CUSTOMER_ID"/>
       <viewAttribute id="CUSTOMER_NAME"/>
       <viewAttribute id="COUNTRY"/>
-      <viewAttribute id="COUNTRY_NAME"/>
-      <viewAttribute id="REGION"/>
-      <viewAttribute hidden="true" id="JOIN$COUNTRY$COUNTRY_ID"/>
+      <viewAttribute hidden="true" id="JOIN$CUSTOMER_ID$CUSTOMER"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="HC::MJ_CUSTOMERS">
       <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_ID" source="CUSTOMER_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_NAME" source="CUSTOMER_NAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSTOMER_ID$CUSTOMER" source="CUSTOMER_ID"/>
+    </input>
+    <input node="HC::MJ_SALES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ID" source="ORDER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER" source="CUSTOMER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AMOUNT" source="AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSTOMER_ID$CUSTOMER" source="CUSTOMER"/>
+    </input>
+    <joinAttribute name="JOIN$CUSTOMER_ID$CUSTOMER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="C1_1" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="HC::MJ_SALES" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="ORDER_ID" aggregationType="sum"/>
+      <viewAttribute id="CUSTOMER"/>
+      <viewAttribute id="AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="COUNTRY_ID"/>
+      <viewAttribute id="COUNTRY_NAME"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="CUSTOMER_ID"/>
+      <viewAttribute id="CUSTOMER_NAME"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute hidden="true" id="JOIN$COUNTRY$COUNTRY_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ID" source="ORDER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER" source="CUSTOMER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AMOUNT" source="AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_ID" source="CUSTOMER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_NAME" source="CUSTOMER_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$COUNTRY$COUNTRY_ID" source="COUNTRY"/>
     </input>
     <input node="HC::MJ_COUNTRIES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY_ID" source="COUNTRY_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY_NAME" source="COUNTRY_NAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$COUNTRY$COUNTRY_ID" source="COUNTRY_ID"/>
     </input>
     <joinAttribute name="JOIN$COUNTRY$COUNTRY_ID"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="CN_1" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="HC::MJ_SALES" multiJoinOrder="Outside In">
-    <viewAttributes>
-      <viewAttribute id="CUSTOMER_ID"/>
-      <viewAttribute id="CUSTOMER_NAME"/>
-      <viewAttribute id="COUNTRY"/>
-      <viewAttribute id="COUNTRY_NAME"/>
-      <viewAttribute id="REGION"/>
-      <viewAttribute id="ORDER_ID" aggregationType="sum"/>
-      <viewAttribute id="AMOUNT" aggregationType="sum"/>
-      <viewAttribute hidden="true" id="JOIN$CUSTOMER$CUSTOMER_ID"/>
-    </viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="HC::MJ_SALES">
-      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ID" source="ORDER_ID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="AMOUNT" source="AMOUNT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSTOMER$CUSTOMER_ID" source="CUSTOMER"/>
-    </input>
-    <input node="Join_1_1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_ID" source="CUSTOMER_ID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_NAME" source="CUSTOMER_NAME"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY_NAME" source="COUNTRY_NAME"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSTOMER$CUSTOMER_ID" source="CUSTOMER_ID"/>
-    </input>
-    <joinAttribute name="JOIN$CUSTOMER$CUSTOMER_ID"/>
-  </calculationView>
 </calculationViews>
 <logicalModel id="Join_1_2">
   <attributes>
-    <attribute id="ORDER_ID" order="1" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ORDER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ORDER_ID"/>
       <keyMapping columnObjectName="Join_1_2" columnName="ORDER_ID"/>
     </attribute>
@@ -109,21 +115,21 @@
     </shape>
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="205"/>
+      <upperLeftCorner x="100" y="216"/>
       <rectangleSize height="30" width="160"/>
     </shape>
-  
-    <shape modelObjectName="HC::MJ_SALES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
-      <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="250"/>
-    </shape>
     <shape modelObjectName="HC::MJ_CUSTOMERS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
-      <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="250"/>
+      <upperLeftCorner x="268" y="52"/>
+      <rectangleSize width="206.6435546875"/>
+    </shape>
+    <shape modelObjectName="HC::MJ_SALES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="20" y="52"/>
+      <rectangleSize width="168.7451171875"/>
     </shape>
     <shape modelObjectName="HC::MJ_COUNTRIES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
-      <upperLeftCorner x="620" y="30"/>
-      <rectangleSize width="250"/>
-    </shape></shapes>
+      <upperLeftCorner x="535" y="52"/>
+      <rectangleSize width="198.08740234375"/>
+    </shape>
+  </shapes>
 </layout>
 </Calculation:scenario>
