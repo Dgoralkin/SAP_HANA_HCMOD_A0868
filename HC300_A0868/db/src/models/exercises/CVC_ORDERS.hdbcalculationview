@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVC_ORDERS" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="CVC_ORDERS"/>
+<descriptions defaultDescription="CVC_ORDERS (U3_E7)"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>

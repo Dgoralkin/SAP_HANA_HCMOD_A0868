@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVC_SALES_SIMPLE" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="SALES_SIMPLE"/>
+<descriptions defaultDescription="SALES_SIMPLE (E5)"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -34,17 +34,9 @@
       <exceptionAggregationMetadata/>
     </measure>
   </baseMeasures>
-  <calculatedMeasures>
-    <measure id="Delta_Gross_Net" order="5" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="13" scale="1" expressionLanguage="SQL">
-      <descriptions defaultDescription="Delta_Gross_Net"/>
-      <formula>&quot;GROSS_AMOUNT&quot;-&quot;NET_AMOUNT&quot;</formula>
-      
-      <exceptionAggregationMetadata/>
-    </measure>
-  </calculatedMeasures>
+  <calculatedMeasures/>
   <restrictedMeasures/>
   <sortAttributes>
-    <sortAttribute id="CURRENCY_CODE" direction="ASC"/>
     <sortAttribute id="GROSS_AMOUNT" direction="DESC"/>
   </sortAttributes>
   <localDimensions/>
@@ -52,9 +44,7 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="92" y="112"/>
-    
-      <rectangleSize width="160"/>
+      <upperLeftCorner x="40" y="85"/>
     </shape>
   </shapes>
 </layout>
