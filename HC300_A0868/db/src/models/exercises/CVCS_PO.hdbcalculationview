@@ -141,12 +141,12 @@
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="HC::SNWD_PO" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="213.787109375"/>
+      <upperLeftCorner x="16" y="16"/>
+      <rectangleSize width="213"/>
     </shape>
     <shape modelObjectName="HC::SNWD_PO_I" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="206.2353515625"/>
+      <upperLeftCorner x="293" y="80"/>
+      <rectangleSize width="206"/>
     </shape>
     <shape modelObjectName="Join_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
       <upperLeftCorner x="20" y="30"/>
@@ -154,11 +154,11 @@
     </shape>
     <shape modelObjectName="HC::CVD_BP_JOIN" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
       <upperLeftCorner x="320" y="-63"/>
-      <rectangleSize width="219.4912109375"/>
+      <rectangleSize width="219"/>
     </shape>
     <shape modelObjectName="HC::CVD_PD" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
       <upperLeftCorner x="320" y="164"/>
-      <rectangleSize width="194.02685546875"/>
+      <rectangleSize width="194"/>
     </shape>
   </shapes>
 </layout>

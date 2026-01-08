@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVD_BP_JOIN" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="Business_Partners_JOIN (U4_E8)"/>
+<descriptions defaultDescription="CVD_BP_JOIN (U4_E8) 2 join levels"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -57,7 +57,6 @@
       <viewAttribute id="LAST_NAME"/>
       <viewAttribute id="LANGUAGE"/>
       <viewAttribute id="EMAIL_ADDRESS"/>
-      <viewAttribute hidden="true" id="JOIN$CLIENT$CLIENT"/>
       <viewAttribute hidden="true" id="JOIN$NODE_KEY$PARTNER_GUID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -69,15 +68,12 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="LANGUAGE" source="LANGUAGE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLIENT$CLIENT" source="CLIENT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$NODE_KEY$PARTNER_GUID" source="NODE_KEY"/>
     </input>
     <input node="HC::SNWD_BP_EM">
       <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDRESS" source="EMAIL_ADDRESS"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLIENT$CLIENT" source="CLIENT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$NODE_KEY$PARTNER_GUID" source="PARTNER_GUID"/>
     </input>
-    <joinAttribute name="JOIN$CLIENT$CLIENT"/>
     <joinAttribute name="JOIN$NODE_KEY$PARTNER_GUID"/>
   </calculationView>
 </calculationViews>
@@ -124,34 +120,32 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="92" y="112"/>
-    
-      <rectangleSize width="160"/>
+      <upperLeftCorner x="40" y="85"/>
     </shape>
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="92" y="357"/>
+      <upperLeftCorner x="100" y="340"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="HC::SNWD_BP" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="227"/>
+      <rectangleSize width="227.02685546875"/>
     </shape>
     <shape modelObjectName="HC::SNWD_CONTACT" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="223"/>
+      <rectangleSize width="223.970703125"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="92" y="217"/>
+      <upperLeftCorner x="100" y="225"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="219"/>
+      <rectangleSize width="250"/>
     </shape>
     <shape modelObjectName="HC::SNWD_BP_EM" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="205"/>
+      <rectangleSize width="205.4296875"/>
     </shape>
   </shapes>
 </layout>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVCS_PO_2" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="CVCS_PO_AGGREGATION"/>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVCS_PO_AGRGT" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="CVCS_PO_AGGREGATION">
+  <comment text="Displays the gross and net amounts by company name and product category"/>
+</descriptions>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -36,6 +38,10 @@
   </baseMeasures>
   <calculatedMeasures/>
   <restrictedMeasures/>
+  <sortAttributes>
+    <sortAttribute id="BP_COMPANY_NAME" direction="ASC"/>
+    <sortAttribute id="GROSS_AMOUNT" direction="DESC"/>
+  </sortAttributes>
   <localDimensions/>
 </logicalModel>
 <layout>
