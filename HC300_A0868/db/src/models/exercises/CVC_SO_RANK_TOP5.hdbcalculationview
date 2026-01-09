@@ -13,13 +13,13 @@
   <calculationView xsi:type="Calculation:RankView" id="Rank_1">
     <viewAttributes>
       <viewAttribute id="COUNTRY"/>
-      <viewAttribute id="BP_COMPANY_NAME"/>
       <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="BP_COMPANY_NAME"/>
       <viewAttribute id="GROSS_AMOUNT" aggregationType="sum"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="HC::CVCS_SO"/>
-    <rankingFilter type="ROW_NUMBER" offsetReference="FRONT" dynamicPartitionAttributes="true">
+    <rankingFilter type="RANK" offsetReference="FRONT" dynamicPartitionAttributes="true">
       <partitionViewAttributeName id="COUNTRY"/>
       <partitionViewAttributeName id="BP_COMPANY_NAME"/>
       <order byViewAttributeName="GROSS_AMOUNT" direction="DESC"/>
@@ -36,13 +36,13 @@
       <descriptions defaultDescription="COUNTRY"/>
       <keyMapping columnObjectName="Rank_1" columnName="COUNTRY"/>
     </attribute>
-    <attribute id="BP_COMPANY_NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="BP_COMPANY_NAME"/>
-      <keyMapping columnObjectName="Rank_1" columnName="BP_COMPANY_NAME"/>
-    </attribute>
-    <attribute id="PRODUCT_ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PRODUCT_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PRODUCT_ID"/>
       <keyMapping columnObjectName="Rank_1" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="BP_COMPANY_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BP_COMPANY_NAME"/>
+      <keyMapping columnObjectName="Rank_1" columnName="BP_COMPANY_NAME"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -50,11 +50,6 @@
     <measure id="GROSS_AMOUNT" order="4" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="GROSS_AMOUNT"/>
       <measureMapping columnObjectName="Rank_1" columnName="GROSS_AMOUNT"/>
-      <exceptionAggregationMetadata/>
-    </measure>
-    <measure id="RANK" order="5" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="RANK"/>
-      <measureMapping columnObjectName="Rank_1" columnName="RANK"/>
       <exceptionAggregationMetadata/>
     </measure>
   </baseMeasures>
@@ -65,11 +60,13 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="40" y="85"/>
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
     </shape>
   
     <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="219"/>
+      <upperLeftCorner x="92" y="217"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   </shapes>

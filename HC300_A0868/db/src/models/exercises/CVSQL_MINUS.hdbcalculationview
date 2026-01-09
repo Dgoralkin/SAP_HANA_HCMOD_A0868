@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVSQL_MINUS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="Customers — NB minus SW (U6_E12) - Minus Node">
-  <comment text="Customers have bought notebooks but no software"/>
-</descriptions>
+<descriptions defaultDescription="Customers — NB minus SW (U6_E12) - Minus node"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -22,6 +20,7 @@
       <viewAttribute id="GROSS_AMOUNT"/>
       <viewAttribute id="CREATED_AT"/>
       <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="CATEGORY"/>
       <viewAttribute id="BP_ID"/>
       <viewAttribute id="BP_COMPANY_NAME"/>
       <viewAttribute id="FIRST_NAME"/>
@@ -38,6 +37,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CREATED_AT" source="CREATED_AT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BP_ID" source="BP_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BP_COMPANY_NAME" source="BP_COMPANY_NAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
@@ -53,6 +53,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CREATED_AT" source="CREATED_AT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BP_ID" source="BP_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BP_COMPANY_NAME" source="BP_COMPANY_NAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
@@ -87,7 +88,7 @@
     </shape>
   
     <shape expanded="true" modelObjectName="Minus_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="210"/>
+      <upperLeftCorner x="100" y="208"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   </shapes>

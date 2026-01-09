@@ -19,10 +19,10 @@
   <calculationView xsi:type="Calculation:ProjectionView" id="SAP_products">
     <viewAttributes>
       <viewAttribute id="PRODUCT_ID"/>
-      <viewAttribute id="TYPE_CODE"/>
       <viewAttribute id="CATEGORY"/>
       <viewAttribute id="CURRENCY_CODE"/>
       <viewAttribute id="PRICE"/>
+      <viewAttribute id="TYPE_CODE"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="HC::SNWD_PD"/>
@@ -31,15 +31,15 @@
     <viewAttributes>
       <viewAttribute id="PRODUCT_ID"/>
       <viewAttribute id="PRODUCT_GROUP_TEXT"/>
-      <viewAttribute id="BASIS_PRICE" aggregationType="sum"/>
       <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="BASIS_PRICE" aggregationType="sum"/>
       <viewAttribute hidden="true" id="JOIN$PRODUCT_GROUP$PRODUCT_GROUP"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="HC::PRODUCT">
       <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="BASIS_PRICE" source="BASIS_PRICE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BASIS_PRICE" source="BASIS_PRICE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRODUCT_GROUP$PRODUCT_GROUP" source="PRODUCT_GROUP"/>
     </input>
     <input node="HC::PRODUCT_GROUP">
@@ -52,23 +52,23 @@
     <viewAttributes>
       <viewAttribute id="PRODUCT_ID"/>
       <viewAttribute id="CATEGORY"/>
-      <viewAttribute id="PRICE" aggregationType="sum"/>
       <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="PRICE" aggregationType="sum"/>
       <viewAttribute id="TYPE_CODE"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="SAP_products">
       <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TYPE_CODE" source="TYPE_CODE"/>
     </input>
     <input node="Third_party_products">
       <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="PRODUCT_GROUP_TEXT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="BASIS_PRICE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="BASIS_PRICE"/>
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TYPE_CODE" null="false" value="PR"/>
     </input>
   </calculationView>
@@ -83,7 +83,7 @@
       <descriptions defaultDescription="CATEGORY"/>
       <keyMapping columnObjectName="Union_1" columnName="CATEGORY"/>
     </attribute>
-    <attribute id="CURRENCY_CODE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CURRENCY_CODE" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CURRENCY_CODE"/>
       <keyMapping columnObjectName="Union_1" columnName="CURRENCY_CODE"/>
     </attribute>
@@ -94,7 +94,7 @@
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="PRICE" order="3" aggregationType="sum" measureType="simple">
+    <measure id="PRICE" order="4" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="PRICE"/>
       <measureMapping columnObjectName="Union_1" columnName="PRICE"/>
       <exceptionAggregationMetadata/>
@@ -107,17 +107,15 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="221.11302679000914" y="112"/>
-    
-      <rectangleSize width="160"/>
+      <upperLeftCorner x="40" y="85"/>
     </shape>
   
     <shape expanded="true" modelObjectName="SAP_products" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="92.00000000000001" y="356.9999988079071"/>
+      <upperLeftCorner x="100" y="351"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Third_party_products" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="302.00000000000006" y="356.9999988079071"/>
+      <upperLeftCorner x="280" y="351"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="HC::PRODUCT" modelObjectNameSpace="Third_party_products" modelObjectType="JoinNodeInput">
@@ -129,7 +127,7 @@
       <rectangleSize width="241.072265625"/>
     </shape>
     <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <upperLeftCorner x="100" y="197"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   </shapes>
