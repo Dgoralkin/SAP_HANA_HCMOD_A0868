@@ -33,8 +33,8 @@
     <joinAttribute name="JOIN$PRODUCT_GROUP$PRODUCT_GROUP"/>
   </calculationView>
 </calculationViews>
-<inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="Level_Hier_Prod_Group" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
-  <descriptions defaultDescription="Group products by groups and products"/>
+<inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="LEVEL_1" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="false" cycleHandling="BREAKUP" emptyValueIsNull="true">
+  <descriptions defaultDescription="Product Level Hierarchy (U10_E21) - Create a Level Hierarchy"/>
   <unassignedMemberProperties mode="FALSE"/>
   <levels>
     <level levelAttribute="PROD_GROUP" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="PROD_GROUP" sortDirection="ASC"/>

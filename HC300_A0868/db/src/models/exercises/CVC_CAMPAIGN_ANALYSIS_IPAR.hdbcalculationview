@@ -4,7 +4,7 @@
 <localVariables>
   <variable id="IP_DATE" parameter="true">
     <descriptions defaultDescription="Campaign Date"/>
-    <variableProperties datatype="DATE" mandatory="true" defaultExpressionLanguage="SQL" defaultValue="2019-12-30">
+    <variableProperties datatype="DATE" mandatory="true" defaultValue="2019-12-30">
       <valueDomain type="Date"/>
       <selection multiLine="false" type="SingleValue"/>
     </variableProperties>
@@ -81,11 +81,13 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="40" y="85"/>
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
     </shape>
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="240"/>
+      <upperLeftCorner x="102" y="217"/>
       <rectangleSize height="30" width="140"/>
     </shape>
     <shape modelObjectName="HC::CUSTOMER" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">

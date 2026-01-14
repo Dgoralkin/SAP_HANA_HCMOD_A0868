@@ -70,12 +70,12 @@
   <calculatedMeasures/>
   <restrictedMeasures/>
   <localDimensions>
-    <localDimension id="Level_Hier_Prod_Group">
+    <localDimension id="PROD_LEV_HIER">
       <attributeRef xsi:type="DataFoundation:Attribute">PROD_GROUP</attributeRef>
       <attributeRef xsi:type="DataFoundation:Attribute">PROD_NAME</attributeRef>
       <hierarchies>
-        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="Level_Hier_Prod_Group" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
-          <descriptions defaultDescription="Group products by groups and products"/>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="PROD_LEV_HIER" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="false" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription="Product Level Hierarchy (U10_E21) - Create a Level Hierarchy"/>
           <unassignedMemberProperties mode="FALSE" name="FALSE"/>
           <levels>
             <level levelAttribute="PROD_GROUP" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="PROD_GROUP" sortDirection="ASC"/>
