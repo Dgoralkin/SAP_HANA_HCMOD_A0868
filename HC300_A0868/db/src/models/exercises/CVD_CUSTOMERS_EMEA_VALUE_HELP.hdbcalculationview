@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVD_CUSTOMERS_EMEA_VALUE_HELP" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="EMEA Customers (U12_E28) - Value Help"/>
+<localVariables>
+  <variable id="IP_1" parameter="true">
+    <descriptions defaultDescription="Countries from EMEA"/>
+    <variableProperties datatype="NVARCHAR" length="60" mandatory="false">
+      <valueDomain type="AttributeValue">
+        <externalLikeStructureName>HC::CVD_COUNTRIES_EMEA_VALUE_HELP</externalLikeStructureName>
+        <externalLikeStructureType>CALCULATION_VIEW</externalLikeStructureType>
+        <externalLikeElementName>COUNTRY_NAME</externalLikeElementName>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HC::CUSTOMER">
+    <resourceUri>HC::CUSTOMER</resourceUri>
+  </DataSource>
+  <DataSource id="HC::COUNTRIES">
+    <resourceUri>HC::COUNTRIES</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="CUSTOMER_ID"/>
+      <viewAttribute id="CUSTOMER_TEXT"/>
+      <viewAttribute id="COUNTRY_NAME"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="LOCATION"/>
+      <viewAttribute hidden="true" id="JOIN$COUNTRY$COUNTRY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HC::CUSTOMER">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_ID" source="CUSTOMER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_TEXT" source="CUSTOMER_TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LOCATION" source="LOCATION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$COUNTRY$COUNTRY" source="COUNTRY"/>
+    </input>
+    <input node="HC::COUNTRIES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY_NAME" source="COUNTRY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$COUNTRY$COUNTRY" source="COUNTRY"/>
+    </input>
+    <joinAttribute name="JOIN$COUNTRY$COUNTRY"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="CUSTOMER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMER_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSTOMER_ID"/>
+    </attribute>
+    <attribute id="CUSTOMER_TEXT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMER_TEXT"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSTOMER_TEXT"/>
+    </attribute>
+    <attribute id="COUNTRY_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY_NAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRY_NAME"/>
+    </attribute>
+    <attribute id="COUNTRY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="REGION" order="5" replaceNull="true" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="Join_1" columnName="REGION"/>
+    </attribute>
+    <attribute id="LOCATION" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LOCATION"/>
+      <keyMapping columnObjectName="Join_1" columnName="LOCATION"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+
+  <filter>&quot;COUNTRY_NAME&quot; = '$$IP_1$$'</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="242"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="HC::CUSTOMER" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="289" y="28"/>
+      <rectangleSize width="227.01611328125"/>
+    </shape>
+    <shape modelObjectName="HC::COUNTRIES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="587" y="28"/>
+      <rectangleSize width="198.08740234375"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
