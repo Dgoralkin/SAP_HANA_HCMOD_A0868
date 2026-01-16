@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVD_CUSTOMERS_EMEA_VALUE_HELP" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="EMEA Customers (U12_E28) - Value Help"/>
+<descriptions defaultDescription="Local Customers (U12_E28 - Value Help) - CUSTOMERS_EMEA"/>
 <localVariables>
-  <variable id="IP_1" parameter="true">
-    <descriptions defaultDescription="Countries from EMEA"/>
-    <variableProperties datatype="NVARCHAR" length="60" mandatory="false">
+  <variable id="IP_Country" parameter="true">
+    <descriptions defaultDescription="User Input For Country"/>
+    <variableProperties datatype="NVARCHAR" length="60" mandatory="true">
       <valueDomain type="AttributeValue">
         <externalLikeStructureName>HC::CVD_COUNTRIES_EMEA_VALUE_HELP</externalLikeStructureName>
         <externalLikeStructureType>CALCULATION_VIEW</externalLikeStructureType>
@@ -25,12 +25,12 @@
 </dataSources>
 <snapshotProcedures/>
 <calculationViews>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
     <viewAttributes>
       <viewAttribute id="CUSTOMER_ID"/>
       <viewAttribute id="CUSTOMER_TEXT"/>
-      <viewAttribute id="COUNTRY_NAME"/>
       <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="COUNTRY_NAME"/>
       <viewAttribute id="REGION"/>
       <viewAttribute id="LOCATION"/>
       <viewAttribute hidden="true" id="JOIN$COUNTRY$COUNTRY"/>
@@ -61,15 +61,15 @@
       <descriptions defaultDescription="CUSTOMER_TEXT"/>
       <keyMapping columnObjectName="Join_1" columnName="CUSTOMER_TEXT"/>
     </attribute>
-    <attribute id="COUNTRY_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="COUNTRY_NAME"/>
-      <keyMapping columnObjectName="Join_1" columnName="COUNTRY_NAME"/>
-    </attribute>
-    <attribute id="COUNTRY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="COUNTRY" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="COUNTRY"/>
       <keyMapping columnObjectName="Join_1" columnName="COUNTRY"/>
     </attribute>
-    <attribute id="REGION" order="5" replaceNull="true" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="COUNTRY_NAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY_NAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRY_NAME"/>
+    </attribute>
+    <attribute id="REGION" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="REGION"/>
       <keyMapping columnObjectName="Join_1" columnName="REGION"/>
     </attribute>
@@ -83,7 +83,7 @@
   <calculatedMeasures/>
   <restrictedMeasures/>
 
-  <filter>&quot;COUNTRY_NAME&quot; = '$$IP_1$$'</filter>
+  <filter>&quot;COUNTRY_NAME&quot; = '$$IP_Country$$'</filter>
 </logicalModel>
 <layout>
   <shapes>
@@ -92,15 +92,15 @@
     </shape>
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="242"/>
+      <upperLeftCorner x="100" y="231"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="HC::CUSTOMER" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="289" y="28"/>
+      <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="227.01611328125"/>
     </shape>
     <shape modelObjectName="HC::COUNTRIES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="587" y="28"/>
+      <upperLeftCorner x="620" y="30"/>
       <rectangleSize width="198.08740234375"/>
     </shape>
   </shapes>

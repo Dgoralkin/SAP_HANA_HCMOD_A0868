@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVD_COUNTRIES_EMEA_VALUE_HELP" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="Countries in EMEA (U12_E28) - Value Help"/>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVD_COUNTRIES_EMEA_VALUE_HELP" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="Countries in EMEA (U12_E28) - Value Help Countries"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -29,6 +29,7 @@
   <baseMeasures/>
   <calculatedMeasures/>
   <restrictedMeasures/>
+
   <filter>&quot;REGION&quot; = 'EMEA'</filter>
 </logicalModel>
 <layout>
