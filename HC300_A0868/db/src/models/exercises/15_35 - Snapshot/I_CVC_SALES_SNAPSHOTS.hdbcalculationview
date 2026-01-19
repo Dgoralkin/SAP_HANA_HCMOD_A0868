@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::I_CVC_SALES_SNAPSHOTS" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="I_CVC_SALES_SNAPSHOTS.hdbcalculationview"/>
+<localVariables>
+  <variable id="I_SOURCE" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="8" mandatory="false" defaultValue="FLATSCREEN_HISTORY">
+      <valueDomain type="StaticList">
+        <listEntry id="FLATSCREEN_HISTORY">
+          <descriptions defaultDescription="SNAPSHOT"/>
+        </listEntry>
+        <listEntry id="ALL">
+          <descriptions defaultDescription="BASE"/>
+        </listEntry>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="BaseView">
+    <resourceUri>HC::CVC_SALES_SNAPSHOTS</resourceUri>
+  </DataSource>
+  <DataSource id="SnapShot">
+    <resourceUri>HC::CVC_SALES_SNAPSHOTS/Q_2019_2020_Flatscreens/SNAP/SNAPSHOT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="YEAR"/>
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="GROSS_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="NET_AMOUNT" aggregationType="sum"/>
+      <viewAttribute datatype="NVARCHAR" length="8" id="SOURCE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="BaseView" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="ALL"/>
+    </input>
+    <input node="SnapShot" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="FLATSCREEN_HISTORY"/>
+    </input>
+    <filter>'$$I_SOURCE$$'=&quot;SOURCE&quot;</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="PRODUCT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <keyMapping columnObjectName="Union_1" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="YEAR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEAR"/>
+      <keyMapping columnObjectName="Union_1" columnName="YEAR"/>
+    </attribute>
+    <attribute id="CATEGORY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CATEGORY"/>
+      <keyMapping columnObjectName="Union_1" columnName="CATEGORY"/>
+    </attribute>
+    <attribute id="CURRENCY_CODE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY_CODE"/>
+      <keyMapping columnObjectName="Union_1" columnName="CURRENCY_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GROSS_AMOUNT" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GROSS_AMOUNT"/>
+      <measureMapping columnObjectName="Union_1" columnName="GROSS_AMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NET_AMOUNT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <measureMapping columnObjectName="Union_1" columnName="NET_AMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="40" y="185"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

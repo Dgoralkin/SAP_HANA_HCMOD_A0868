@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVC_EMPL_SALARY_PRUNING" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" pruningTable="HC::Empl_Salary_Pruning" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="Yearly Salaries of Employees"/>
+<descriptions defaultDescription="Yearly Salaries of Employees - (U14_E33) - Union Pruning"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
