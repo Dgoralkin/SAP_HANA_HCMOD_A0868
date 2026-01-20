@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVC_EMPL_SALARY_PRUNING" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" pruningTable="HC::Empl_Salary_Pruning" mdsCubeConversionExecution="AT_LOADING_TIME">
 <descriptions defaultDescription="Yearly Salaries of Employees - (U14_E33) - Union Pruning"/>
-<localVariables/>
+<localVariables>
+  <variable id="IP_YEAR" parameter="true">
+    <descriptions defaultDescription="YEAR"/>
+    <variableProperties datatype="INTEGER" mandatory="true">
+      <valueDomain type="StaticList">
+        <listEntry id="2020">
+          <descriptions defaultDescription="2020"/>
+        </listEntry>
+        <listEntry id="2021">
+          <descriptions defaultDescription="2021"/>
+        </listEntry>
+        <listEntry id="2022">
+          <descriptions defaultDescription="2022"/>
+        </listEntry>
+        <listEntry id="2023">
+          <descriptions defaultDescription="2023"/>
+        </listEntry>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
 <variableMappings/>
 <dataSources>
   <DataSource id="HC::Empl_Salary_Current">
@@ -13,7 +34,7 @@
 </dataSources>
 <snapshotProcedures/>
 <calculationViews>
-  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="Year" aggregationType="sum"/>
       <viewAttribute id="EmployeeID" aggregationType="sum"/>
@@ -32,7 +53,7 @@
     </input>
   </calculationView>
 </calculationViews>
-<logicalModel id="Union_1">
+<logicalModel id="Union_1" filterExpressionLanguage="SQL">
   <attributes>
     <attribute id="Year" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Year"/>
@@ -55,6 +76,8 @@
   <calculatedMeasures/>
   <restrictedMeasures/>
   <localDimensions/>
+
+  <filter>&quot;Year&quot; = $$IP_YEAR$$</filter>
 </logicalModel>
 <layout>
   <shapes>

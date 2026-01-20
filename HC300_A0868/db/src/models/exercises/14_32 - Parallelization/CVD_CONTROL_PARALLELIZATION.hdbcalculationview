@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVD_CONTROL_PARALLELIZATION" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="CVD_CONTROL_PARALLELIZATION - (U14_E32) - Parallelization"/>
+<descriptions defaultDescription="CONTROL_PARALLELIZATION - (U14_E32) - Parallelization"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -18,16 +18,15 @@
       <viewAttribute id="TotalSalary"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="HC::Empl_Salary_Current"/>
-  </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <input node="HC::Empl_Salary_Current"/></calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
     <viewAttributes>
       <viewAttribute id="Year"/>
       <viewAttribute id="EmployeeID"/>
       <viewAttribute id="TotalSalary"/>
     </viewAttributes>
     <calculatedViewAttributes>
-      <calculatedViewAttribute id="CC_1_Monthly_Sallary" datatype="DECIMAL" length="10" scale="2" expressionLanguage="SQL">
+      <calculatedViewAttribute id="CC_Monthly_Salary" datatype="DECIMAL" length="10" scale="2" expressionLanguage="SQL">
         <formula>&quot;TotalSalary&quot; / 12</formula>
       </calculatedViewAttribute>
     </calculatedViewAttributes>
@@ -38,14 +37,14 @@
       <viewAttribute id="Year"/>
       <viewAttribute id="EmployeeID"/>
       <viewAttribute id="TotalSalary"/>
-      <viewAttribute id="CC_1_Monthly_Sallary"/>
+      <viewAttribute id="CC_Monthly_Salary"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="Projection_2" emptyUnionBehavior="NO_ROW">
+    <input node="Projection_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="Year" source="Year"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EmployeeID" source="EmployeeID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TotalSalary" source="TotalSalary"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_1_Monthly_Sallary" source="CC_1_Monthly_Sallary"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Monthly_Salary" source="CC_Monthly_Salary"/>
     </input>
   </calculationView>
 </calculationViews>
@@ -63,9 +62,9 @@
       <descriptions defaultDescription="TotalSalary"/>
       <keyMapping columnObjectName="Stop_Parallel" columnName="TotalSalary"/>
     </attribute>
-    <attribute id="CC_1_Monthly_Sallary" order="4" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Monthly_Sallary"/>
-      <keyMapping columnObjectName="Stop_Parallel" columnName="CC_1_Monthly_Sallary"/>
+    <attribute id="CC_Monthly_Salary" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Monthly_Salary"/>
+      <keyMapping columnObjectName="Stop_Parallel" columnName="CC_Monthly_Salary"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -85,12 +84,12 @@
       <upperLeftCorner x="92" y="427"/>
       <rectangleSize height="30" width="160"/>
     </shape>
-    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="92" y="322"/>
-      <rectangleSize height="30" width="160"/>
-    </shape>
     <shape expanded="true" modelObjectName="Stop_Parallel" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="322"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   </shapes>

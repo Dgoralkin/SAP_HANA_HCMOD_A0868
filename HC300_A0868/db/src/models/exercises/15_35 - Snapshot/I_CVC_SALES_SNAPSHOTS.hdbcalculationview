@@ -4,12 +4,12 @@
 <localVariables>
   <variable id="I_SOURCE" parameter="true">
     <descriptions defaultDescription=""/>
-    <variableProperties datatype="NVARCHAR" length="8" mandatory="false" defaultValue="FLATSCREEN_HISTORY">
+    <variableProperties datatype="NVARCHAR" length="8" mandatory="false" defaultValue="Flat_Screens">
       <valueDomain type="StaticList">
-        <listEntry id="FLATSCREEN_HISTORY">
+        <listEntry id="Flat_Screens">
           <descriptions defaultDescription="SNAPSHOT"/>
         </listEntry>
-        <listEntry id="ALL">
+        <listEntry id="All_Sales">
           <descriptions defaultDescription="BASE"/>
         </listEntry>
       </valueDomain>
@@ -46,7 +46,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
-      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="ALL"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="All_Sales"/>
     </input>
     <input node="SnapShot" emptyUnionBehavior="NO_ROW">
       <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
@@ -55,7 +55,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
-      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="FLATSCREEN_HISTORY"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="Flat_Screens"/>
     </input>
     <filter>'$$I_SOURCE$$'=&quot;SOURCE&quot;</filter>
   </calculationView>

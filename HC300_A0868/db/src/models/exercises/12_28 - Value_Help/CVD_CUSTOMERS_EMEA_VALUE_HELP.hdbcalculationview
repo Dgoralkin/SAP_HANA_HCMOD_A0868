@@ -97,11 +97,11 @@
     </shape>
     <shape modelObjectName="HC::CUSTOMER" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="227.01611328125"/>
+      <rectangleSize width="227"/>
     </shape>
     <shape modelObjectName="HC::COUNTRIES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="620" y="30"/>
-      <rectangleSize width="198.08740234375"/>
+      <rectangleSize width="198"/>
     </shape>
   </shapes>
 </layout>

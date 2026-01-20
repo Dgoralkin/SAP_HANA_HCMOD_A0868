@@ -13,8 +13,8 @@
 <snapshotProcedures/>
 <staticResultCache cacheEnabled="true" retentionPeriod="60" force="false">
   <cacheColumn id="COLUMN1"/>
+  <cacheColumn id="COLUMN2"/>
   <cacheColumn id="MEASURE"/>
-  <filterCondition></filterCondition>
 </staticResultCache>
 <calculationViews/>
 <logicalModel id="HC::CACHED_TABLE">
