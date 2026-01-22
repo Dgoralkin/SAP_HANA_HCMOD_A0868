@@ -1,0 +1,41 @@
+_schema-version: "2.1"
+ID: DG_SCHEMA_A0868                          # Project Name
+version: 0.0.1
+
+
+modules:
+- name: db
+  type: hdb
+  path: db
+
+  requires:
+    # hdi container: hdi_db(Service instance name) -> hdi_db(A0868_SERVICE-hdidb-ws-0w5o2)
+  - name: hdi_db
+    properties:
+      TARGET_CONTAINER: ~{hdi-container-name}
+
+    # External service container to access remote schema (cross-container)
+  - name: cross-container-service-1
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_1
+      service: ~{the-service-name}
+
+
+resources:
+  # hdi container:
+- name: hdi_db
+  type: com.sap.xs.hdi-container
+  parameters:
+    config:
+      schema: DG_SCHEMA_A0868                 # Schemaname
+  properties:
+    hdi-container-name: ${service-name}       # Container name
+
+  # External service container to access remote schema
+- name: cross-container-service-1
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: EXT_SCHEMA_SERVICE          #  User provided service with technical user prevelages
+  properties:
+    the-service-name: ${service-name}

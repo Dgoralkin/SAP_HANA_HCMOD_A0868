@@ -1,0 +1,6 @@
+// Define namespace for the remote service (cross-container-service)
+// Synonyms are created without a namespace
+{
+    "name": "",
+    "subfolder": "ignore"
+}

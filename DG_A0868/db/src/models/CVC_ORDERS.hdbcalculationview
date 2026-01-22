@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="DG_A0868.models::CVC_ORDERS" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="Orders_Synonym - (U19_E39) - External Schema"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ORDERS">
+    <resourceUri>ORDERS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="ORDERS">
+  <attributes>
+    <attribute id="PRODUCT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="ORDERS" columnName="PRODUCT"/>
+    </attribute>
+    <attribute id="STORE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="ORDERS" columnName="STORE"/>
+    </attribute>
+    <attribute id="CUSTOMER" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="ORDERS" columnName="CUSTOMER"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ORDER_ID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=" "/>
+      <measureMapping columnObjectName="ORDERS" columnName="ORDER_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="QUANTITY" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=" "/>
+      <measureMapping columnObjectName="ORDERS" columnName="QUANTITY"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="UNIT_PRICE" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=" "/>
+      <measureMapping columnObjectName="ORDERS" columnName="UNIT_PRICE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

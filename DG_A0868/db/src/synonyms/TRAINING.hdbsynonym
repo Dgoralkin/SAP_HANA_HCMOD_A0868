@@ -1,0 +1,8 @@
+{
+  "TRAINING": {
+    "target": {
+      "object": "ORDERS",
+      "schema": "TRAINING"
+    }
+  }
+}

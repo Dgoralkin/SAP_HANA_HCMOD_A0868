@@ -1,24 +1,33 @@
 _schema-version: "2.1"
 ID: HC300
 version: 0.0.1
+
 modules:
 - name: db
   type: hdb
   path: db
   requires:
+  # Main container for the hdi container
   - name: hdi_db
     properties:
       TARGET_CONTAINER: ~{hdi-container-name}
+
+  # Cross container for the external container
   - name: cross-container-service-2
     group: SERVICE_REPLACEMENTS
     properties:
       key: GrantorService
       service: ~{the-service-name}
+
+
+# list of resources
+# Regular hdi container
 resources:
 - name: hdi_db
   type: com.sap.xs.hdi-container
   properties:
     hdi-container-name: ${service-name}
+# Cross container to the remote container
 - name: cross-container-service-2
   type: org.cloudfoundry.existing-service
   parameters:
