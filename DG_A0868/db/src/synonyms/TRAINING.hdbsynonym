@@ -1,5 +1,5 @@
 {
-  "TRAINING": {
+  "DG::ORDERS": {
     "target": {
       "object": "ORDERS",
       "schema": "TRAINING"

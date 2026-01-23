@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="DG_A0868.models::CVC_ORDERS" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="Orders_Synonym - (U19_E39) - External Schema"/>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="DG.models::CVC_ORDERS" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="CVC_ORDERS - (U19_E39) - External Schema"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="ORDERS">
-    <resourceUri>ORDERS</resourceUri>
+  <DataSource id="DG::ORDERS">
+    <resourceUri>DG::ORDERS</resourceUri>
   </DataSource>
 </dataSources>
 <snapshotProcedures/>
 <calculationViews/>
-<logicalModel id="ORDERS">
+<logicalModel id="DG::ORDERS">
   <attributes>
     <attribute id="PRODUCT" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription=" "/>

@@ -1,1 +1,10 @@
-{"folders":[{"path":"DG_A0868"}],"settings":{}}
+{
+    "folders": [
+        {
+            "path": "DG_A0868"
+        }
+    ],
+    "settings": {
+        "SAP HANA Database Artifacts.lastSelectedTargetPath": "/home/user/projects/DG_A0868/db/src/synonyms"
+    }
+}

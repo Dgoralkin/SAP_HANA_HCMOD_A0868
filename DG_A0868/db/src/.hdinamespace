@@ -1,8 +1,4 @@
-// Define namespace for the project
 {
-    "name": "DG_A0868",
-    
-    // Any design-time object under db/src/... gets the namespace:
-    // DG_A0868.<folder-path> -> The effective namespace becomes: DG_A0868.models
+    "name": "DG",
     "subfolder": "append"
 }
