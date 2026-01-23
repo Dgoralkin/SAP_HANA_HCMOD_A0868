@@ -1,0 +1,8 @@
+{
+"role":{
+ "name":"HC::UNMASK_ALL",
+ "schema_privileges":[{
+   "privileges":["UNMASKED"]
+                     }]
+        }
+}

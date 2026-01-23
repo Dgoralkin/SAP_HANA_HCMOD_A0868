@@ -1,0 +1,7 @@
+SELECT SESSION_USER FROM DUMMY;
+
+--                                          'Schema','namespace::role_name(UNMASK_ALL.hdbrole)'
+CALL TRAIN_ADMIN.P_HC300_MANAGE_ROLE('GRANT','HC300_A0868_HDI_DB_2','HC::UNMASK_ALL', ?);
+
+
+CALL TRAIN_ADMIN.P_HC300_MANAGE_ROLE('REVOKE','HC300_A0868_HDI_DB_2','HC::UNMASK_ALL', ?);
