@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVCS_PO3_AP" applyPrivilegeType="SQL_ANALYTIC_PRIVILEGE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" calculationScenarioType="TREE_BASED" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" hierarchiesSQLEnabled="true" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="Purchase Orders"/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HC::CVCS_PO2" applyPrivilegeType="SQL_ANALYTIC_PRIVILEGE" dataCategory="CUBE" schemaVersion="3.0" calculationScenarioType="TREE_BASED" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" hierarchiesSQLEnabled="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="Purchase Orders - (U19_E41) - Analytic Privilege"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -71,20 +71,19 @@
       <descriptions defaultDescription="PARTNER_GUID"/>
       <keyMapping columnObjectName="Join_1" columnName="PARTNER_GUID"/>
     </attribute>
-    <attribute id="PRODUCT_GUID$local">
-      <keyMapping columnObjectName="Join_1" columnName="PRODUCT_GUID"/>
-    </attribute>
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
     <measure id="GROSS_AMOUNT" order="4" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="GROSS_AMOUNT"/>
       <measureMapping columnObjectName="Join_1" columnName="GROSS_AMOUNT"/>
+    
       <exceptionAggregationMetadata/>
     </measure>
     <measure id="TAX_AMOUNT" order="5" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="TAX_AMOUNT"/>
       <measureMapping columnObjectName="Join_1" columnName="TAX_AMOUNT"/>
+    
       <exceptionAggregationMetadata/>
     </measure>
   
@@ -92,6 +91,7 @@
       <descriptions defaultDescription="NET_AMOUNT"/>
   
       <measureMapping columnObjectName="Join_1" columnName="NET_AMOUNT"/>
+    
   
       <exceptionAggregationMetadata/>
   
@@ -113,21 +113,6 @@
       <associatedAttributeFeatures>
         <attributeReference alias="CLIENT_BP" attributeName="CLIENT" hidden="true"/>
         <attributeReference alias="NODE_KEY_BP" attributeName="NODE_KEY" hidden="true"/>
-      </associatedAttributeFeatures>
-    </logicalJoin>
-    <logicalJoin associatedObjectUri="HC::CVD_PD2">
-      <attributes>
-        <attributeRef>PRODUCT_GUID$local</attributeRef>
-        <attributeRef>CLIENT$local</attributeRef>
-      </attributes>
-      <associatedAttributeNames>
-        <attributeName>NODE_KEY</attributeName>
-        <attributeName>CLIENT</attributeName>
-      </associatedAttributeNames>
-      <properties cardinality="CN_1" joinType="referential" joinOperator="Equal"/>
-      <associatedAttributeFeatures>
-        <attributeReference alias="CLIENT_1" attributeName="CLIENT"/>
-        <attributeReference alias="NODE_KEY_1" attributeName="NODE_KEY"/>
       </associatedAttributeFeatures>
     </logicalJoin>
   </sharedDimensions>
@@ -158,11 +143,6 @@
     </shape>
     <shape modelObjectName="HC::CVD_BP2" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="250"/>
-    </shape>
-  
-    <shape modelObjectName="HC::CVD_PD2" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
-      <upperLeftCorner x="620" y="30"/>
       <rectangleSize width="250"/>
     </shape>
   </shapes>

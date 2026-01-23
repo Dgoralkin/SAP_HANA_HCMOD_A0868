@@ -1,0 +1,30 @@
+-- EXERCISE: CREATE AND ASSIGN AN ANALYTIC PRIVILEGE
+
+-- Preparation:
+-- First replace A#### everywhere in this script with your assigned student number
+SELECT SESSION_USER FROM DUMMY;
+
+
+-- 2.3. Assign DATA_VIEWER role to your user
+=================================================================================================
+-- CALL TRAIN_ADMIN.P_HC300_MANAGE_ROLE('GRANT','schema name','namespace::.hdbrole filename', ?);
+=================================================================================================
+CALL TRAIN_ADMIN.P_HC300_MANAGE_ROLE('GRANT','HC300_A0868_HDI_DB_2','HC::DATA_VIEWER', ?);      |
+=================================================================================================
+
+
+
+
+
+-- 4.3. Assign DATA_VIEWER2 role to your user and preview the calculation view
+CALL TRAIN_ADMIN.P_HC300_MANAGE_ROLE('GRANT','HC300_A0868_HDI_DB_2','HC::DATA_VIEWER2', ?);
+SELECT DISTINCT COUNTRY, CATEGORY FROM "HC300_A0868_HDI_DB_2"."HC::CVCS_PO3_AP";
+
+-- 4.4 Revoke role DATA_VIEWER2 and assign role DATA_VIEWER3 to your user, and preview the calculation view
+
+CALL TRAIN_ADMIN.P_HC300_MANAGE_ROLE('REVOKE','HC300_A0868_HDI_DB_2','HC::DATA_VIEWER2', ?);
+CALL TRAIN_ADMIN.P_HC300_MANAGE_ROLE('GRANT','HC300_A0868_HDI_DB_2','HC::DATA_VIEWER3', ?);
+SELECT DISTINCT COUNTRY, CATEGORY FROM "HC300_A0868_HDI_DB_2"."HC::CVCS_PO3_AP";
+
+-- Revoke role DATA_VIEWER3 from your user (optional) 
+CALL TRAIN_ADMIN.P_HC300_MANAGE_ROLE('REVOKE','HC300_A0868_HDI_DB_2','HC::DATA_VIEWER3', ?);

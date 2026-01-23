@@ -1,0 +1,181 @@
+1. Create a new project (MTA Application)
+2. Create a HDB module
+3. Deploy the project
+
+Task 1: Create the Project and Database Module
+Task 2: Finalize the Project and Deploy the HDB Module
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Project Name			DG_A0868
+Module Name			db
+Namespace			DG_A0868.db
+Schema Name			DG_SCHEMA_A0868
+SAP HANA Database Version	SAP HANA Cloud
+Bind the database module to? 		Yes
+Create a new HDI service instance?	Yes
+Service instance name		[Keep the default]
+Use the default database instance of the selected Cloud Foundry space?	Yes
+
+Created and opens in a new workspace> /home/user/projects/DG_A0868/
+
+IN DB ->
+-Project Name	  -Service instance name: 
+A0868_SERVICE-hdidb-ws-0w5o2 (DEV)
+
+-Schema Name		-Namespace
+DG_SCHEMA_A0868		-DG_A0868
+
+SQL: select CURRENT_SCHEMA from DUMMY;
+				DG_SCHEMA_A0868_2
+     select CURRENT_USER from DUMMY;
+				DG_SCHEMA_A0868_2_AKDOPWF0WZUFWHPZBU5NPE90Z_RT
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- Reference a service to access data outside of the application container
+- Define synonyms for external objects and set up the relevant security
+
+Task 1: Bind the User Provided Service to your Project
+Task 2: Define Synonyms and Authorization to the External Schema
+Task 3: Check That Your Synonyms are Correctly Defined
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Task 1:
+- To access data outside of your HDI container, you need a user provided service that will connect to the external database.
+
+- This user provided service created and called:  EXT_SCHEMA_SERVICE
+- It uses a technical user that has privileges
+
+==============================================================================
+CREATE ROLE "externalaccess_roleforOO";
+CREATE ROLE "externalaccess_roleforAP";
+
+GRANT SELECT ON SCHEMA TRAINING TO "externalaccess_roleforOO" WITH GRANT OPTION;
+GRANT SELECT ON SCHEMA TRAINING TO "externalaccess_roleforAP";
+
+CREATE USER UPS_GRANTOR PASSWORD "Password1" NO FORCE_FIRST_PASSWORD_CHANGE;
+
+GRANT "externalaccess_roleforOO" TO UPS_GRANTOR WITH ADMIN OPTION;
+GRANT "externalaccess_roleforAP" TO UPS_GRANTOR WITH ADMIN OPTION;
+==============================================================================
+
+* you will need to transfer those rights to the:
+	a. Object Owner and 
+	b. Application User in your project.
+
+TODO:
+in SAP HANA PROJECTS at the bottom:
+1. Add database connection (+) as:
+		connection type: Existing user-provided service instance
+2. Choose the user provided service as: 
+		EXT_SCHEMA_SERVICE (technical user privileges)
+Check MTA.yaml file for update...
+
+
+Task 2:
+- You must configure synonyms and authorization in order to access the data from any schema outside of your container.
+
+1. In the desired folder (as Synonym), define the .namespace file:
+	// Synonyms are created without a namespace
+	{
+    		"name": "",
+    		"subfolder": "ignore"
+	}
+
+2. Define the authorizations in a .hdbgrants you want to grant to both the 
+	a. object owner
+	b. application user on objects.
+in Global Roles -> Roles with Admin Option
+{
+    "user provided service name":{
+        "object_owner": {
+            "global_roles": [
+                {
+                    "roles_with_admin_option":["EXT_SCHEMA_ACCESS_OBJOWNER"]
+                }
+            ]
+        },
+        "application_user": {
+            "global_roles": [
+                {
+                    "roles":["EXT_SCHEMA_ACCESS_OBJOWNER"]
+                }
+            ]
+        }
+    }
+}
+
+		!!! Deploy the entire synonyms folder or file only !!!
+
+3. Add the [Schema_Name].hdbsynonym file and define access to schemas and tables.
+a. 	In your db → src → synonym folder, create a design-time 	TRAINING.hdbsynonym file that will store synonyms for tables located 	in the TRAINING schema
+b. 	Add a synonym for the table ORDERS in the TRAINING schema with the 	following properties:
+	Synonym Name	DG::ORDERS
+	Object Name	ORDERS
+	Schema Name	TRAINING
+
+*In the Find Data Sources dialog box, select the service EXT_SCHEMA_SERVICE.
+		!!! Deploy the entire synonyms folder or file only !!!
+
+Task 3:
+- Check That Your Synonyms are Correctly Defined by creating a CVC/CVD and accessing the ORDERS table.
+
+CVC_ORDERS
+
+If a namespace :: error thrown, 
+    // Any design-time object under db/src/... gets the namespace:
+    // DG_A0868.<folder-path> -> The effective namespace becomes: DG_A0868.models
+is violated.
+To fix:
+change the calculation id="DG_A0868.models::CVC_ORDERS"
+
+
+SQL:
+
+
+/* 
+- Check user connectivity and privilages.
+*/
+
+SELECT
+    CONNECTION_ID,
+    USER_NAME,
+    CLIENT_HOST,
+    CLIENT_IP,
+    CONNECTION_STATUS,
+    START_TIME
+FROM SYS.M_CONNECTIONS
+ORDER BY START_TIME DESC;
+
+SELECT
+    USER_NAME,
+    USER_DEACTIVATED,
+    CREATE_TIME
+FROM SYS.USERS
+ORDER BY USER_NAME;
+
+SELECT
+    GRANTEE,
+    PRIVILEGE
+FROM SYS.GRANTED_PRIVILEGES
+WHERE GRANTEE = 'A0868';
+
+SELECT
+    GRANTEE,
+    ROLE_NAME
+FROM SYS.GRANTED_ROLES
+WHERE GRANTEE = 'A0868';
+
+CREATE ROLE "externalaccess_roleforOO";
+CREATE ROLE "externalaccess_roleforAP";
+
+GRANT SELECT ON SCHEMA TRAINING TO "externalaccess_roleforOO" WITH GRANT OPTION;
+GRANT SELECT ON SCHEMA TRAINING TO "externalaccess_roleforAP";
+
+CREATE USER UPS_GRANTOR PASSWORD "Password1" NO FORCE_FIRST_PASSWORD_CHANGE;
+
+GRANT "externalaccess_roleforOO" TO UPS_GRANTOR WITH ADMIN OPTION;
+GRANT "externalaccess_roleforAP" TO UPS_GRANTOR WITH ADMIN OPTION;

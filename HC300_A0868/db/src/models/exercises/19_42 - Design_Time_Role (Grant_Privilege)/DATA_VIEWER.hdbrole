@@ -1,0 +1,12 @@
+{
+  "role": {
+    "name": "HC::DATA_VIEWER",
+    "schema_analytic_privileges": [
+      {
+        "privileges": [
+          "HC::AP_COUNTRY_US"
+        ]
+      }
+    ]
+  }
+}

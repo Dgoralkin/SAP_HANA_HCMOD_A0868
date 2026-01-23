@@ -1,5 +1,6 @@
 {
     "SAP HANA Project Explorer.bind.confirm automatic undeployment": false,
     "SAP HANA SQLScript LSP.URL": "https://cf-eu10.cf.hana-tooling.ingress.orchestration.prod-eu10.hanacloud.ondemand.com/hrtt-service",
-    "SAP HANA SQLScript LSP.XsAdvancedHrttServiceUrl": ""
+    "SAP HANA SQLScript LSP.XsAdvancedHrttServiceUrl": "",
+    "SAP HANA Database Artifacts.lastSelectedTargetPath": "/home/user/projects/HC300_A0868/db/src/models/exercises/19_42 - Design_Time_Role"
 }
